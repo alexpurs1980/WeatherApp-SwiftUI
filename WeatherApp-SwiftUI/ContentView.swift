@@ -10,6 +10,7 @@ import SwiftUI
 var cityName: String = "Moscow, Russia"
 var mainTemperatureInt: Int = 21
 var mainTemperatureString = String(mainTemperatureInt) + "℃"
+var temperatureWeekArray: [String] = ["22℃", "23℃", "21℃", "19℃", "22℃", "24℃", "25℃"]
 
 
 struct ContentView: View {
@@ -40,6 +41,29 @@ struct ContentView: View {
                         .font(.system(size: 70, weight: .regular))
                         .foregroundColor(.white)
                 }
+                
+                HStack (spacing: 20){
+                    WeatherDayView(dayOfWeek: "MON",
+                                   imageNameForWearher: "cloud.sun.fill",
+                                   temperature: temperatureWeekArray[0])
+                    WeatherDayView(dayOfWeek: "TUE",
+                                   imageNameForWearher: "sun.max.fill",
+                                   temperature: temperatureWeekArray[1])
+                    WeatherDayView(dayOfWeek: "WED",
+                                imageNameForWearher: "cloud.sun.fill",
+                                temperature: temperatureWeekArray[2])
+                    WeatherDayView(dayOfWeek: "THU",
+                                imageNameForWearher: "cloud.sun.rain.fill",
+                                temperature: temperatureWeekArray[3])
+                    WeatherDayView(dayOfWeek: "FRI",
+                                imageNameForWearher: "cloud.sun.fill",
+                                temperature: temperatureWeekArray[4])
+                        
+                }
+                .padding(.all)
+                
+                
+                
                 Spacer()
             }
         }
@@ -49,5 +73,29 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct WeatherDayView: View {
+    var dayOfWeek: String
+    var imageNameForWearher: String
+    var temperature: String
+    
+    var body: some View {
+        VStack{
+            Text(dayOfWeek)
+                .font(.system(size: 16, weight: .regular))
+                .foregroundColor(.blue)
+            Image(systemName: imageNameForWearher)
+                .renderingMode(.original)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 40, height: 40)
+            Text(temperature)
+                .font(.system(size: 16, weight: .regular))
+                .foregroundColor(.white)
+            
+        }
+        
     }
 }
