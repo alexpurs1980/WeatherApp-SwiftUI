@@ -16,9 +16,13 @@ var temperatureWeekArray: [String] = ["22℃", "23℃", "21℃", "19℃", "22℃
 struct ContentView: View {
     var body: some View {
         ZStack{
-            LinearGradient(gradient: Gradient(colors:[.blue, .white]),
-                           startPoint: .topLeading,
-                           endPoint: .bottomTrailing)
+            LinearGradient(gradient:
+                Gradient(colors:
+                    [Color("darkBlue"),
+                    .blue,
+                    Color("darkBlue")]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
                 
             //main screen vertical stack with all views
@@ -42,6 +46,8 @@ struct ContentView: View {
                         .foregroundColor(.white)
                 }
                 
+                Spacer()
+                
                 HStack (spacing: 20){
                     WeatherDayView(dayOfWeek: "MON",
                                    imageNameForWearher: "cloud.sun.fill",
@@ -61,8 +67,6 @@ struct ContentView: View {
                         
                 }
                 .padding(.all)
-                
-                
                 
                 Spacer()
             }
@@ -85,7 +89,7 @@ struct WeatherDayView: View {
         VStack{
             Text(dayOfWeek)
                 .font(.system(size: 16, weight: .regular))
-                .foregroundColor(.blue)
+                .foregroundColor(.white)
             Image(systemName: imageNameForWearher)
                 .renderingMode(.original)
                 .resizable()
